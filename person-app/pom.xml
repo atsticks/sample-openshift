@@ -1,0 +1,163 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>gh.atsticks.demos.ee2ms</groupId>
+        <artifactId>k8s</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <packaging>jar</packaging>
+    <artifactId>person-app</artifactId>
+
+    <name>Person Application</name>
+
+    <properties>
+        <hibernate.version>5.2.10.Final</hibernate.version>
+        <mariadb.driver.version>2.0.1</mariadb.driver.version>
+        <java.main.class>io.vertx.core.Launcher</java.main.class>
+        <vertx.verticle>gh.atsticks.samples.k8s.person.PersonApp</vertx.verticle>
+    </properties>
+
+    <build>
+        <finalName>person-app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
+                <configuration>
+                    <buildStrategy>s2i</buildStrategy>
+                    <namespace>dev-person</namespace>
+                    <generator>
+                        <config>
+                            <java-exec>
+                                <mainClass>io.vertx.core.Launcher</mainClass>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>${vertx.verticle}</argument>
+                                </arguments>
+                            </java-exec>
+                        </config>
+                    </generator>
+                    <images>
+                        <image>
+                            <name>apps/%a:%l</name>
+                            <alias>person-app</alias>
+                            <build>
+                                <maintainer>atsticks@gmail.com</maintainer>
+                                <from>fabric8/s2i-java:latest</from>
+                                <assembly>
+                                    <descriptorRef>artifact</descriptorRef>
+                                </assembly>
+                                <entryPoint>
+                                    <!-- shell form  -->
+                                    <shell>java -jar ${project.build.finalName}.jar</shell>
+                                </entryPoint>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <labels>
+                                    <snapshot>%t</snapshot>
+                                    <version>${project.version}</version>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                </labels>
+                            </build>
+                            <livenessProbe>
+                                <httpGet>
+                                    <path>/</path>
+                                    <port>8080</port>
+                                    <schem>HTTP</schem>
+                                    <initialDelaySeconds>5</initialDelaySeconds>
+                                    <timeoutSeconds>1</timeoutSeconds>
+                                    <periodSeconds>10</periodSeconds>
+                                </httpGet>
+                            </livenessProbe>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+            <!-- vert.x maven plugin to generate the fat-jar -->
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>vertx-maven-plugin</artifactId>
+                <version>${vertx-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>vmp</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>initialize</goal>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*KT.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.vertx</groupId>-->
+            <!--<artifactId>vertx-rx</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-dropwizard-metrics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-hazelcast</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>${mariadb.driver.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-unit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: person-db
+  namespace: dev-person
+  labels:
+    app: mariadb-ephemeral
+    template: mariadb-persistent-template
+spec:
+  strategy:
+    type: Recreate
+    recreateParams:
+      timeoutSeconds: 600
+    activeDeadlineSeconds: 21600
+  triggers:
+    - type: ConfigChange
+  replicas: 1
+  test: false
+  selector:
+    name: person-db
+  template:
+    metadata:
+      labels:
+        name: person-db
+    spec:
+      volumes:
+        - name: person-db-data
+          emptyDir: {}
+      containers:
+        - name: mariadb
+          image: 'centos/mariadb-101-centos7:latest'
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+          env:
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: person-db
+                  key: database-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: person-db
+                  key: database-password
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: person-db
+                  key: database-root-password
+            - name: MYSQL_DATABASE
+              value: person
+          resources:
+            limits:
+              memory: 512Mi
+          volumeMounts:
+            - name: person-db-data
+              mountPath: /var/lib/mysql/data
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+            initialDelaySeconds: 30
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command:
+                - /bin/sh
+                - '-i'
+                - '-c'
+                - >-
+                  MYSQL_PWD="$MYSQL_PASSWORD" mysql -h 127.0.0.1 -u $MYSQL_USER
+                  -D $MYSQL_DATABASE -e 'SELECT 1'
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst

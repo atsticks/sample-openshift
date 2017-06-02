@@ -1,0 +1,6210 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "creationTimestamp": null
+    },
+    "objects": [
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-admin",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true",
+                    "openshift.io/description": "A super-user that can perform any action in the cluster. When granted to a user within a project, they have full control over quota and membership and can perform every action on every resource in the project."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "*"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "*"
+                    ],
+                    "resources": [
+                        "*"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "*"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "sudoer",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "impersonate"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "systemusers"
+                    ],
+                    "resourceNames": [
+                        "system:admin"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-reader",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "bindings",
+                        "componentstatuses",
+                        "configmaps",
+                        "endpoints",
+                        "events",
+                        "limitranges",
+                        "namespaces",
+                        "namespaces/status",
+                        "nodes",
+                        "nodes/status",
+                        "persistentvolumeclaims",
+                        "persistentvolumeclaims/status",
+                        "persistentvolumes",
+                        "persistentvolumes/status",
+                        "pods",
+                        "pods/binding",
+                        "pods/eviction",
+                        "pods/log",
+                        "pods/status",
+                        "podtemplates",
+                        "replicationcontrollers",
+                        "replicationcontrollers/scale",
+                        "replicationcontrollers/status",
+                        "resourcequotas",
+                        "resourcequotas/status",
+                        "securitycontextconstraints",
+                        "serviceaccounts",
+                        "services",
+                        "services/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets",
+                        "statefulsets/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers",
+                        "horizontalpodautoscalers/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs",
+                        "cronjobs/status",
+                        "jobs",
+                        "jobs/status",
+                        "scheduledjobs",
+                        "scheduledjobs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets",
+                        "daemonsets/status",
+                        "deployments",
+                        "deployments/scale",
+                        "deployments/status",
+                        "horizontalpodautoscalers",
+                        "horizontalpodautoscalers/status",
+                        "ingresses",
+                        "ingresses/status",
+                        "jobs",
+                        "jobs/status",
+                        "networkpolicies",
+                        "podsecuritypolicies",
+                        "replicasets",
+                        "replicasets/scale",
+                        "replicasets/status",
+                        "replicationcontrollers",
+                        "replicationcontrollers/scale",
+                        "storageclasses",
+                        "thirdpartyresources"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "policy"
+                    ],
+                    "resources": [
+                        "poddisruptionbudgets",
+                        "poddisruptionbudgets/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "storage.k8s.io"
+                    ],
+                    "resources": [
+                        "storageclasses"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "certificates.k8s.io"
+                    ],
+                    "resources": [
+                        "certificatesigningrequests",
+                        "certificatesigningrequests/approval",
+                        "certificatesigningrequests/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "clusterpolicies",
+                        "clusterpolicybindings",
+                        "clusterrolebindings",
+                        "clusterroles",
+                        "policies",
+                        "policybindings",
+                        "rolebindingrestrictions",
+                        "rolebindings",
+                        "roles"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs",
+                        "buildconfigs/webhooks",
+                        "builds",
+                        "builds/details",
+                        "builds/log"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs",
+                        "deploymentconfigs/log",
+                        "deploymentconfigs/scale",
+                        "deploymentconfigs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images",
+                        "imagesignatures",
+                        "imagestreamimages",
+                        "imagestreams",
+                        "imagestreams/status",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "oauthclientauthorizations"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projectrequests",
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "appliedclusterresourcequotas",
+                        "clusterresourcequotas",
+                        "clusterresourcequotas/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes",
+                        "routes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "clusternetworks",
+                        "egressnetworkpolicies",
+                        "hostsubnets",
+                        "netnamespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "processedtemplates",
+                        "templateconfigs",
+                        "templates"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "groups",
+                        "identities",
+                        "useridentitymappings",
+                        "users"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localresourceaccessreviews",
+                        "localsubjectaccessreviews",
+                        "resourceaccessreviews",
+                        "selfsubjectrulesreviews",
+                        "subjectaccessreviews",
+                        "subjectrulesreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "authentication.k8s.io"
+                    ],
+                    "resources": [
+                        "tokenreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "podsecuritypolicyreviews",
+                        "podsecuritypolicyselfsubjectreviews",
+                        "podsecuritypolicysubjectreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/metrics",
+                        "nodes/spec"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/stats"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "*"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildlogs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourcequotausages"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-debugger",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "/debug/pprof",
+                        "/debug/pprof/*",
+                        "/metrics"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-docker",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/docker"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-custom",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/custom"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-source",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/source"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-jenkinspipeline",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/jenkinspipeline"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "storage-admin",
+                "creationTimestamp": null
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "storage.k8s.io"
+                    ],
+                    "resources": [
+                        "storageclasses"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events",
+                        "persistentvolumeclaims"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "admin",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "A user that has edit rights within the project and can change the project's membership."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods",
+                        "pods/attach",
+                        "pods/exec",
+                        "pods/portforward",
+                        "pods/proxy"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "configmaps",
+                        "endpoints",
+                        "persistentvolumeclaims",
+                        "replicationcontrollers",
+                        "replicationcontrollers/scale",
+                        "secrets",
+                        "serviceaccounts",
+                        "services",
+                        "services/proxy"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "bindings",
+                        "events",
+                        "limitranges",
+                        "namespaces",
+                        "namespaces/status",
+                        "pods/log",
+                        "pods/status",
+                        "replicationcontrollers/status",
+                        "resourcequotas",
+                        "resourcequotas/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "impersonate"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "serviceaccounts"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs",
+                        "jobs",
+                        "scheduledjobs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments",
+                        "deployments/rollback",
+                        "deployments/scale",
+                        "horizontalpodautoscalers",
+                        "jobs",
+                        "replicasets",
+                        "replicasets/scale",
+                        "replicationcontrollers/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "rolebindings",
+                        "roles"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localresourceaccessreviews",
+                        "localsubjectaccessreviews",
+                        "subjectrulesreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "podsecuritypolicyreviews",
+                        "podsecuritypolicyselfsubjectreviews",
+                        "podsecuritypolicysubjectreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "policies",
+                        "policybindings",
+                        "rolebindingrestrictions"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs",
+                        "buildconfigs/webhooks",
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/log"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs/instantiate",
+                        "buildconfigs/instantiatebinary",
+                        "builds/clone"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "admin",
+                        "edit",
+                        "view"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "build.openshift.io"
+                    ],
+                    "resources": [
+                        "jenkins"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs",
+                        "deploymentconfigs/scale",
+                        "generatedeploymentconfigs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigrollbacks",
+                        "deploymentconfigs/instantiate",
+                        "deploymentconfigs/rollback"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs/log",
+                        "deploymentconfigs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreams/secrets",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimports"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete",
+                        "get",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "appliedclusterresourcequotas"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "processedtemplates",
+                        "templateconfigs",
+                        "templates"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildlogs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourcequotausages"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourceaccessreviews",
+                        "subjectaccessreviews"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "edit",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "A user that can create and edit most objects in a project, but can not update the project's membership."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods",
+                        "pods/attach",
+                        "pods/exec",
+                        "pods/portforward",
+                        "pods/proxy"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "configmaps",
+                        "endpoints",
+                        "persistentvolumeclaims",
+                        "replicationcontrollers",
+                        "replicationcontrollers/scale",
+                        "secrets",
+                        "serviceaccounts",
+                        "services",
+                        "services/proxy"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "bindings",
+                        "events",
+                        "limitranges",
+                        "namespaces",
+                        "namespaces/status",
+                        "pods/log",
+                        "pods/status",
+                        "replicationcontrollers/status",
+                        "resourcequotas",
+                        "resourcequotas/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "impersonate"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "serviceaccounts"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs",
+                        "jobs",
+                        "scheduledjobs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments",
+                        "deployments/rollback",
+                        "deployments/scale",
+                        "horizontalpodautoscalers",
+                        "jobs",
+                        "replicasets",
+                        "replicasets/scale",
+                        "replicationcontrollers/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs",
+                        "buildconfigs/webhooks",
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/log"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs/instantiate",
+                        "buildconfigs/instantiatebinary",
+                        "builds/clone"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "edit",
+                        "view"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "build.openshift.io"
+                    ],
+                    "resources": [
+                        "jenkins"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs",
+                        "deploymentconfigs/scale",
+                        "generatedeploymentconfigs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigrollbacks",
+                        "deploymentconfigs/instantiate",
+                        "deploymentconfigs/rollback"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs/log",
+                        "deploymentconfigs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreams/secrets",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimports"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "appliedclusterresourcequotas"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "processedtemplates",
+                        "templateconfigs",
+                        "templates"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildlogs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourcequotausages"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "view",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "A user who can view but not edit any resources within the project. They can not view secrets or membership."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "configmaps",
+                        "endpoints",
+                        "persistentvolumeclaims",
+                        "pods",
+                        "replicationcontrollers",
+                        "serviceaccounts",
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "bindings",
+                        "events",
+                        "limitranges",
+                        "namespaces",
+                        "namespaces/status",
+                        "pods/log",
+                        "pods/status",
+                        "replicationcontrollers/status",
+                        "resourcequotas",
+                        "resourcequotas/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs",
+                        "jobs",
+                        "scheduledjobs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments",
+                        "deployments/scale",
+                        "horizontalpodautoscalers",
+                        "jobs",
+                        "replicasets",
+                        "replicasets/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs",
+                        "buildconfigs/webhooks",
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/log"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "view"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "build.openshift.io"
+                    ],
+                    "resources": [
+                        "jenkins"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs",
+                        "deploymentconfigs/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs/log",
+                        "deploymentconfigs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "appliedclusterresourcequotas"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "processedtemplates",
+                        "templateconfigs",
+                        "templates"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildlogs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourcequotausages"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "basic-user",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "A user that can get basic information about projects."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "users"
+                    ],
+                    "resourceNames": [
+                        "~"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projectrequests"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "clusterroles"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "storage.k8s.io"
+                    ],
+                    "resources": [
+                        "storageclasses"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "selfsubjectrulesreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": {
+                        "kind": "IsPersonalSubjectAccessReview",
+                        "apiVersion": "v1"
+                    },
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localsubjectaccessreviews",
+                        "subjectaccessreviews"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "self-access-reviewer",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "selfsubjectrulesreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": {
+                        "kind": "IsPersonalSubjectAccessReview",
+                        "apiVersion": "v1"
+                    },
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localsubjectaccessreviews",
+                        "subjectaccessreviews"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "self-provisioner",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true",
+                    "openshift.io/description": "A user that can request projects."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projectrequests"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-status",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true",
+                    "openshift.io/description": "A user that can get basic cluster status information."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "/healthz",
+                        "/healthz/*"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "/.well-known",
+                        "/.well-known/*",
+                        "/api",
+                        "/api/*",
+                        "/apis",
+                        "/apis/*",
+                        "/oapi",
+                        "/oapi/*",
+                        "/osapi",
+                        "/osapi/",
+                        "/swaggerapi",
+                        "/swaggerapi/*",
+                        "/version",
+                        "/version/*"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-auditor",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-puller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "Grants the right to pull images from within a project."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-pusher",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "Grants the right to push and pull images from within a project."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-builder",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "Grants the right to build, push and pull images from within a project.  Used primarily with service accounts for builds."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/details"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-pruner",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods",
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "limitranges"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs",
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images",
+                        "imagestreams"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/status"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:image-signer",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images",
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagesignatures"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:deployer",
+                "creationTimestamp": null,
+                "annotations": {
+                    "openshift.io/description": "Grants the right to deploy within a project.  Used primarily with service accounts for automated deployments."
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods/log"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamtags"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:master",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "*"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "*"
+                    ],
+                    "resources": [
+                        "*"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "*"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:oauth-token-deleter",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "oauthaccesstokens",
+                        "oauthauthorizetokens"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:router",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "routes/status"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:registry",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "limitranges",
+                        "resourcequotas"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreams/secrets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "images",
+                        "imagestreams"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreammappings"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-proxier",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints",
+                        "services"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-admin",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "proxy"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "*"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/log",
+                        "nodes/metrics",
+                        "nodes/proxy",
+                        "nodes/spec",
+                        "nodes/stats"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-reader",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/metrics",
+                        "nodes/spec"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/stats"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "authentication.k8s.io"
+                    ],
+                    "resources": [
+                        "tokenreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localsubjectaccessreviews",
+                        "subjectaccessreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "configmaps",
+                        "secrets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims",
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "certificates.k8s.io"
+                    ],
+                    "resources": [
+                        "certificatesigningrequests"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:sdn-reader",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "egressnetworkpolicies",
+                        "hostsubnets",
+                        "netnamespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces",
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "networkpolicies"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "clusternetworks"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:sdn-manager",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "hostsubnets",
+                        "netnamespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "clusternetworks"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:webhook",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "buildconfigs/webhooks"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:discovery",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": null,
+                    "resources": [],
+                    "nonResourceURLs": [
+                        "/.well-known",
+                        "/.well-known/*",
+                        "/api",
+                        "/api/*",
+                        "/apis",
+                        "/apis/*",
+                        "/oapi",
+                        "/oapi/*",
+                        "/osapi",
+                        "/osapi/",
+                        "/swaggerapi",
+                        "/swaggerapi/*",
+                        "/version",
+                        "/version/*"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "registry-admin",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "secrets",
+                        "serviceaccounts"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreams/secrets",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimports"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "rolebindings",
+                        "roles"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "localresourceaccessreviews",
+                        "localsubjectaccessreviews",
+                        "subjectrulesreviews"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "policies",
+                        "policybindings"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "resourceaccessreviews",
+                        "subjectaccessreviews"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "registry-editor",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "secrets",
+                        "serviceaccounts"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list",
+                        "patch",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreams/secrets",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimports"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "registry-viewer",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreammappings",
+                        "imagestreams",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "projects"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "builds/custom",
+                        "builds/docker",
+                        "builds/jenkinspipeline",
+                        "builds/source"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:certificate-signing-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "certificates.k8s.io"
+                    ],
+                    "resources": [
+                        "certificatesigningrequests"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "certificates.k8s.io"
+                    ],
+                    "resources": [
+                        "certificatesigningrequests/approval",
+                        "certificatesigningrequests/status"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:daemonset-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "daemonsets/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods/binding"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:deployment-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "replicasets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:deploymentconfig-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:disruption-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "replicasets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "policy"
+                    ],
+                    "resources": [
+                        "poddisruptionbudgets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "policy"
+                    ],
+                    "resources": [
+                        "poddisruptionbudgets/status"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:endpoint-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods",
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "list",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints/restricted"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:gc-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:hpa-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        "autoscaling"
+                    ],
+                    "resources": [
+                        "horizontalpodautoscalers/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "proxy"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ],
+                    "resourceNames": [
+                        "https:heapster:"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:job-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs",
+                        "jobs",
+                        "scheduledjobs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        "batch"
+                    ],
+                    "resources": [
+                        "cronjobs/status",
+                        "jobs/status",
+                        "scheduledjobs/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions",
+                        "batch"
+                    ],
+                    "resources": [
+                        "jobs"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:namespace-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "delete",
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "namespaces/finalize",
+                        "namespaces/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "delete",
+                        "deletecollection",
+                        "get",
+                        "list"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "*"
+                    ],
+                    "resources": [
+                        "*"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-bootstrapper",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "certificates.k8s.io"
+                    ],
+                    "resources": [
+                        "certificatesigningrequests"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:pv-attach-detach-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:pv-binder-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "storage.k8s.io"
+                    ],
+                    "resources": [
+                        "storageclasses"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints",
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "secrets"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:pv-provisioner-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims/status"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:pv-recycler-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumes/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:replicaset-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "replicasets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "replicasets/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:replication-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:service-ingress-ip-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:service-load-balancer-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "nodes"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:service-serving-cert-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "services"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get",
+                        "list",
+                        "update",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "secrets"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:statefulset-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "apps"
+                    ],
+                    "resources": [
+                        "statefulsets/status"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "delete",
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "pods"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "persistentvolumeclaims"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "create",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRole",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:unidling-controller",
+                "creationTimestamp": null,
+                "annotations": {
+                    "authorization.openshift.io/system-only": "true"
+                }
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "",
+                        "extensions"
+                    ],
+                    "resources": [
+                        "replicationcontrollers/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        "extensions"
+                    ],
+                    "resources": [
+                        "deployments/scale",
+                        "replicasets/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs/scale"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "events"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "endpoints"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "replicationcontrollers"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "patch",
+                        "update"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "deploymentconfigs"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:masters",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:masters"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:masters"
+                }
+            ],
+            "roleRef": {
+                "name": "system:master"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-admins",
+                "creationTimestamp": null
+            },
+            "userNames": [
+                "system:master"
+            ],
+            "groupNames": [
+                "system:node-admins"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemUser",
+                    "name": "system:master"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:node-admins"
+                }
+            ],
+            "roleRef": {
+                "name": "system:node-admin"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-admins",
+                "creationTimestamp": null
+            },
+            "userNames": [
+                "system:admin"
+            ],
+            "groupNames": [
+                "system:cluster-admins"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:cluster-admins"
+                },
+                {
+                    "kind": "SystemUser",
+                    "name": "system:admin"
+                }
+            ],
+            "roleRef": {
+                "name": "cluster-admin"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-readers",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:cluster-readers"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:cluster-readers"
+                }
+            ],
+            "roleRef": {
+                "name": "cluster-reader"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "basic-users",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "basic-user"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "self-access-reviewers",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated",
+                "system:unauthenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:unauthenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "self-access-reviewer"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "self-provisioners",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated:oauth"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated:oauth"
+                }
+            ],
+            "roleRef": {
+                "name": "self-provisioner"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:oauth-token-deleters",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated",
+                "system:unauthenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:unauthenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:oauth-token-deleter"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "cluster-status-binding",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated",
+                "system:unauthenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:unauthenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "cluster-status"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:nodes",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:nodes"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:nodes"
+                }
+            ],
+            "roleRef": {
+                "name": "system:node"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:node-proxiers",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:nodes"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:nodes"
+                }
+            ],
+            "roleRef": {
+                "name": "system:node-proxier"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:sdn-readers",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:nodes"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:nodes"
+                }
+            ],
+            "roleRef": {
+                "name": "system:sdn-reader"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:webhooks",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated",
+                "system:unauthenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:unauthenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:webhook"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:discovery-binding",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated",
+                "system:unauthenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                },
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:unauthenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:discovery"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-docker-binding",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:build-strategy-docker"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-source-binding",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:build-strategy-source"
+            }
+        },
+        {
+            "kind": "ClusterRoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "system:build-strategy-jenkinspipeline-binding",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                }
+            ],
+            "roleRef": {
+                "name": "system:build-strategy-jenkinspipeline"
+            }
+        },
+        {
+            "kind": "Role",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "shared-resource-viewer",
+                "namespace": "openshift",
+                "creationTimestamp": null
+            },
+            "rules": [
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "templates"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get",
+                        "list",
+                        "watch"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreamimages",
+                        "imagestreams",
+                        "imagestreamtags"
+                    ]
+                },
+                {
+                    "verbs": [
+                        "get"
+                    ],
+                    "attributeRestrictions": null,
+                    "apiGroups": [
+                        ""
+                    ],
+                    "resources": [
+                        "imagestreams/layers"
+                    ]
+                }
+            ]
+        },
+        {
+            "kind": "RoleBinding",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "shared-resource-viewers",
+                "namespace": "openshift",
+                "creationTimestamp": null
+            },
+            "userNames": null,
+            "groupNames": [
+                "system:authenticated"
+            ],
+            "subjects": [
+                {
+                    "kind": "SystemGroup",
+                    "name": "system:authenticated"
+                }
+            ],
+            "roleRef": {
+                "namespace": "openshift",
+                "name": "shared-resource-viewer"
+            }
+        }
+    ]
+}

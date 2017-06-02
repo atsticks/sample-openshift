@@ -1,0 +1,13 @@
+metadata:
+  name: ${project.artifactId}
+  labels:
+    application:  "person"
+    tier:         "data"
+    component: "person-app"
+data:
+  hibernate.properties: |
+    hibernate.connection.username="personapp"
+    hibernate.connection.password="pwd334"
+    hibernate.dialect="org.hibernate.dialect.MySQL5InnoDBDialect"
+    hibernate.connection.url="jdbc:mariadb://${PERSON_DB_SERVICE_HOST}:${PERSON_DB_SERVICE_PORT}/person"
+    hibernate.connection.provider_class="org.hibernate.connection.DriverManagerConnectionProvider"
